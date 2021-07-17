@@ -1,16 +1,17 @@
 package com.applikeysolutions.cosmocalendar.adapter.viewholder;
 
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.applikeysolutions.cosmocalendar.settings.SettingsManager;
-import com.applikeysolutions.customizablecalendar.R;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.applikeysolutions.cosmocalendar.adapter.DaysAdapter;
 import com.applikeysolutions.cosmocalendar.model.Month;
+import com.applikeysolutions.cosmocalendar.settings.SettingsManager;
 import com.applikeysolutions.cosmocalendar.view.MonthView;
+import com.applikeysolutions.customizablecalendar.R;
 
 public class MonthHolder extends RecyclerView.ViewHolder {
 

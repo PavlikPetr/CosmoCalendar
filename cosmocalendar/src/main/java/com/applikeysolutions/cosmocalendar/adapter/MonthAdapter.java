@@ -1,7 +1,8 @@
 package com.applikeysolutions.cosmocalendar.adapter;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.applikeysolutions.cosmocalendar.adapter.viewholder.MonthHolder;
 import com.applikeysolutions.cosmocalendar.model.Day;
@@ -133,10 +134,10 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthHolder> {
         setDaysAccordingToSet(connectedCalendarDays, DayFlag.FROM_CONNECTED_CALENDAR);
     }
 
-    public void setDisabledDaysCriteria(DisabledDaysCriteria criteria){
+    public void setDisabledDaysCriteria(DisabledDaysCriteria criteria) {
         for (Month month : months) {
             for (Day day : month.getDays()) {
-                if(!day.isDisabled()){
+                if (!day.isDisabled()) {
                     day.setDisabled(CalendarUtils.isDayDisabledByCriteria(day, criteria));
                 }
             }
