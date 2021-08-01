@@ -20,6 +20,7 @@ public class CalendarListsModel implements CalendarListsInterface {
 
     private Set<Long> weekendDays = new HashSet() {{
         add(Calendar.SUNDAY);
+        add(Calendar.SATURDAY);
     }};
 
     @Override

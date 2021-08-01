@@ -1,6 +1,7 @@
 package com.applikeysolutions.cosmocalendar.adapter.viewholder;
 
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.view.View;
 
 import com.applikeysolutions.cosmocalendar.settings.appearance.ConnectedDayIconPosition;
@@ -35,7 +36,10 @@ public class DayHolder extends BaseDayHolder {
         }
 
         if (day.isCurrent()) {
-            addCurrentDayIcon(isSelected);
+            ctvDay.setTypeface(null, Typeface.BOLD);
+//            addCurrentDayIcon(isSelected);
+        }else{
+            ctvDay.setTypeface(null, Typeface.NORMAL);
         }
 
         if(day.isDisabled()){
@@ -73,7 +77,7 @@ public class DayHolder extends BaseDayHolder {
             } else {
                 ctvDay.setTextColor(day.getConnectedDaysSelectedTextColor());
             }
-            addConnectedDayIcon(true);
+//            addConnectedDayIcon(true);
         } else {
             ctvDay.setTextColor(calendarView.getSelectedDayTextColor());
             ctvDay.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -166,7 +170,7 @@ public class DayHolder extends BaseDayHolder {
             } else {
                 textColor = day.getConnectedDaysTextColor();
             }
-            addConnectedDayIcon(false);
+//            addConnectedDayIcon(false);
         } else if (day.isWeekend()) {
             textColor = calendarView.getWeekendDayTextColor();
             ctvDay.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);

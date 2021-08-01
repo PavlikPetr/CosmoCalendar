@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.applikeysolutions.cosmocalendar.adapter.DaysAdapter;
 import com.applikeysolutions.cosmocalendar.model.Month;
 import com.applikeysolutions.cosmocalendar.settings.SettingsManager;
+import com.applikeysolutions.cosmocalendar.utils.CalendarUtils;
 import com.applikeysolutions.cosmocalendar.view.MonthView;
 import com.applikeysolutions.customizablecalendar.R;
 
@@ -37,7 +38,7 @@ public class MonthHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Month month) {
-        tvMonthName.setText(month.getMonthName());
+        tvMonthName.setText(CalendarUtils.capitalize(month.getMonthName()));
         tvMonthName.setTextColor(appearanceModel.getMonthTextColor());
 
         viewLeftLine.setVisibility(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? View.INVISIBLE : View.VISIBLE);

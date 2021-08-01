@@ -3,10 +3,11 @@ package com.applikeysolutions.cosmocalendar.adapter.viewholder;
 import android.view.View;
 import android.widget.TextView;
 
-import com.applikeysolutions.cosmocalendar.utils.Constants;
-import com.applikeysolutions.customizablecalendar.R;
 import com.applikeysolutions.cosmocalendar.model.Day;
+import com.applikeysolutions.cosmocalendar.utils.CalendarUtils;
+import com.applikeysolutions.cosmocalendar.utils.Constants;
 import com.applikeysolutions.cosmocalendar.view.CalendarView;
+import com.applikeysolutions.customizablecalendar.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -22,7 +23,7 @@ public class DayOfWeekHolder extends BaseDayHolder {
     }
 
     public void bind(Day day) {
-        tvDay.setText(mDayOfWeekFormatter.format(day.getCalendar().getTime()));
+        tvDay.setText(CalendarUtils.capitalize(mDayOfWeekFormatter.format(day.getCalendar().getTime())));
         tvDay.setTextColor(calendarView.getWeekDayTitleTextColor());
     }
 }

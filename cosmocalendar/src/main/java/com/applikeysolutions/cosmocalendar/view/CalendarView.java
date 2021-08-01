@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.applikeysolutions.cosmocalendar.FetchMonthsAsyncTask;
 import com.applikeysolutions.cosmocalendar.adapter.MonthAdapter;
+import com.applikeysolutions.cosmocalendar.listeners.OnDaySelected;
 import com.applikeysolutions.cosmocalendar.listeners.OnMonthChangeListener;
 import com.applikeysolutions.cosmocalendar.model.Day;
 import com.applikeysolutions.cosmocalendar.model.Month;
@@ -95,6 +96,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
     //Listeners
     private OnMonthChangeListener onMonthChangeListener;
+    private OnDaySelected onDaySelected;
     private Month previousSelectedMonth;
 
     private int lastVisibleMonthPosition = SettingsManager.DEFAULT_MONTH_COUNT / 2;
@@ -329,9 +331,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
     private void createRangeSelectionLayout() {
         llRangeSelection = (LinearLayout) ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_selection_bar_range, null);
-        llRangeSelection.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//        llRangeSelection.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         llRangeSelection.setVisibility(GONE);
-        flBottomSelectionBar.addView(llRangeSelection);
+//        flBottomSelectionBar.addView(llRangeSelection);
     }
 
     private void showDaysOfWeekTitle() {
@@ -634,6 +636,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     public void onDaySelected() {
         selectedDays = getSelectedDays();
         displaySelectedDays();
+        if (onDaySelected != null) {
+            onDaySelected.onSelected(selectedDays);
+        }
     }
 
     /**
@@ -702,7 +707,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
      * @return
      */
     private boolean needToShowSelectedDaysRange() {
-        if (getCalendarOrientation() == OrientationHelper.HORIZONTAL && getSelectionType() == SelectionType.RANGE) {
+        if (getCalendarOrientation() == OrientationHelper.HORIZONTAL && getSelectionType() == SelectionType.RANGE && false) {
             if (selectionManager instanceof RangeSelectionManager) {
                 if (((RangeSelectionManager) selectionManager).getDays() != null) {
                     return true;
@@ -1064,6 +1069,10 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
     public void setOnMonthChangeListener(OnMonthChangeListener onMonthChangeListener) {
         this.onMonthChangeListener = onMonthChangeListener;
+    }
+
+    public void setOnDaySelected(OnDaySelected onDaySelected) {
+        this.onDaySelected = onDaySelected;
     }
 
     @Override

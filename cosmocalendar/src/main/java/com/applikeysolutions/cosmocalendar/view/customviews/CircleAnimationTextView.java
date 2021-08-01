@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
@@ -47,6 +48,8 @@ public class CircleAnimationTextView extends AppCompatTextView {
     public static final int DEFAULT_PADDING = 10;
     public static final int MAX_PROGRESS = 100;
     public static final long SELECTION_ANIMATION_DURATION = 300;
+
+    private float radius = convertDpToPx(getContext(), 4f);
 
     public CircleAnimationTextView(Context context) {
         super(context);
@@ -133,7 +136,19 @@ public class CircleAnimationTextView extends AppCompatTextView {
         final int diameterProgress = animationProgress * diameter / MAX_PROGRESS;
 
         setBackgroundColor(Color.TRANSPARENT);
-        canvas.drawCircle(getWidth() / 2, getWidth() / 2, diameterProgress / 2, circlePaint);
+
+
+        float center_x, center_y;
+        center_x = getWidth() / 2;
+        center_y = getWidth() / 2;
+
+        final RectF rect = new RectF();
+        rect.set(center_x - diameter / 2, center_y - diameter / 2, center_x + diameter / 2,
+                center_y + diameter / 2);
+
+
+        canvas.drawRoundRect(rect, radius, radius, circlePaint);
+//        canvas.drawCircle(getWidth() / 2, getWidth() / 2, diameterProgress / 2, circlePaint);
     }
 
     private void drawCircleUnder(Canvas canvas) {
@@ -141,7 +156,19 @@ public class CircleAnimationTextView extends AppCompatTextView {
             createCircleUnderPaint();
         }
         final int diameter = getWidth() - DEFAULT_PADDING * 2;
-        canvas.drawCircle(getWidth() / 2, getWidth() / 2, diameter / 2, circleUnderPaint);
+
+
+        float center_x, center_y;
+        center_x = getWidth() / 2;
+        center_y = getWidth() / 2;
+
+        final RectF rect = new RectF();
+        rect.set(center_x - diameter / 2, center_y - diameter / 2, center_x + diameter / 2,
+                center_y + diameter / 2);
+
+
+        canvas.drawRoundRect(rect, radius, radius, circleUnderPaint);
+//        canvas.drawCircle(getWidth() / 2, getWidth() / 2, diameter / 2, circleUnderPaint);
     }
 
     private void createCirclePaint() {
@@ -357,5 +384,9 @@ public class CircleAnimationTextView extends AppCompatTextView {
             CircleAnimationTextView.this.setAnimationProgress(progress);
             CircleAnimationTextView.this.requestLayout();
         }
+    }
+
+    public float convertDpToPx(Context context, float dp) {
+        return dp * context.getResources().getDisplayMetrics().density;
     }
 }
