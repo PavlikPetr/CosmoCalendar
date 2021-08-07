@@ -31,8 +31,6 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 5
-        versionName "1.0.4"
     }
     buildTypes {
         release {
@@ -43,9 +41,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'androidx.appcompat:appcompat:1.0.0'
-    compile 'androidx.recyclerview:recyclerview:1.0.0'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'androidx.appcompat:appcompat:1.0.0'
+    api 'androidx.recyclerview:recyclerview:1.0.0'
 }
 
 // Place it at the end of the file
